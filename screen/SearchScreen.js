@@ -1,12 +1,17 @@
 import React from 'react';
-import { Alert, Button, StyleSheet, Text, View } from 'react-native';
+import { Alert, Button, StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
 
 export default class SearchScreen extends React.Component {
+  state = {
+    'name': ''
+  }
+  componentDidMount = () => AsyncStorage.getItem('name').then((value) => this.setState({ 'name': value }))
+  
   render() {
     return (
       <View style={styles.container}>
-        <Text>Search Screen</Text>
+        <Text>{this.state.name}</Text>
       </View>
     );
   }  
